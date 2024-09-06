@@ -1,6 +1,7 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
-const CONTENTFUL_SPACE="topvlbdnaa89"
-const CONTENTFUL_ACCESS_TOKEN="9XbVPsy2B-52y_yeUFZY5oIzESCmUa9YvkDyI_65flQ"
+
+const CONTENTFUL_SPACE=process.env.EXPO_PUBLIC_CONTENTFUL_SPACE;
+const CONTENTFUL_ACCESS_TOKEN=process.env.EXPO_PUBLIC_CONTENTFUL_ACCESS_TOKEN;
 
 const URL = `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE}`;
 
