@@ -1,9 +1,10 @@
 import { View, Text, StyleSheet } from 'react-native';
+import { ProjectList } from '.';
 
 export default function Tab() {
   return (
     <View style={styles.container}>
-      <Text>Tab Projects</Text>
+       <ProjectList hideHeader />
     </View>
   );
 }
@@ -13,5 +14,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: "#fff"
   },
 });

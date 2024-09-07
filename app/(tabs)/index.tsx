@@ -1,7 +1,15 @@
 import { useQuery } from "@apollo/client";
-import { View, Text, StyleSheet, TextInput, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  FlatList,
+  Pressable,
+} from "react-native";
 import { GET_HOME_LIST } from "../../config/gql/home";
 import { Image } from "expo-image";
+import { useRouter } from "expo-router";
 
 export default function Tab() {
   return (
@@ -28,29 +36,34 @@ interface IItem {
   imagePreview: { url: string };
 }
 
-const Item = ({ title, imagePreview, shortDescription }: IItem) => {
+const Item = ({ title, imagePreview, shortDescription, slug }: IItem) => {
+  const router = useRouter();
+
+  const handleOnPress = () => {
+    router.push(`/projects/${slug}?query=${title}`);
+  };
+
   return (
-    <View style={styles.card}>
+    <Pressable style={styles.card} onPress={handleOnPress}>
       <Image
         style={styles.image}
         source={imagePreview?.url}
-        // placeholder={{ blurhash }}
         contentFit="contain"
       />
       <View style={styles.card_content}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.shortDescription}>{shortDescription}</Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
-const ProjectList = () => {
+export const ProjectList = ({ hideHeader }: { hideHeader?: boolean }) => {
   const { loading, error, data } = useQuery(GET_HOME_LIST);
 
   return (
     <FlatList
-      ListHeaderComponent={Header}
+      ListHeaderComponent={hideHeader ? null : Header}
       data={data?.proboardCollection?.items || []}
       renderItem={({ item }) => <Item {...item} />}
       keyExtractor={(item) => item.slug}
@@ -93,14 +106,14 @@ const styles = StyleSheet.create({
     borderColor: "#ededed",
     marginBottom: 10,
     marginHorizontal: 10,
-    borderRadius: 4
+    borderRadius: 4,
   },
   title: {
     fontSize: 24,
     fontWeight: 500,
     marginBottom: 8,
     borderBottomWidth: 4,
-    borderBottomColor: "#000"
+    borderBottomColor: "#000",
   },
   shortDescription: {
     fontSize: 12,
@@ -111,6 +124,6 @@ const styles = StyleSheet.create({
   },
   card_content: {
     padding: 10,
-    marginTop: 14
-  }
+    marginTop: 14,
+  },
 });

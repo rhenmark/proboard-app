@@ -6,9 +6,10 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "scheme": "proboard",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "ios": {
