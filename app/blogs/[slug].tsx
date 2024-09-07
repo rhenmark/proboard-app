@@ -13,13 +13,13 @@ import { GET_BLOGS_ITEM } from "../../config/gql/blogs";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import RenderHtml from "react-native-render-html";
 import Markdown from "react-native-markdown-display";
+import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 
 const options = {
-    renderText: (text: any) => { 
-        console.log("text ==>", text)
-        return <Markdown>{text}</Markdown>
-    }
-}
+  renderText: (text: any) => {
+    return <Markdown>{text}</Markdown>;
+  },
+};
 
 const BlogItem = () => {
   const navigation = useNavigation();
@@ -64,24 +64,12 @@ const BlogItem = () => {
       {/* Assuming the content.json is a rich text object (e.g., from Contentful or similar CMS) */}
       {/* You can parse and render the content.json here */}
       <View style={styles.contentContainer}>
-        {/* Implement rendering logic based on your content structure */}
-        {/* <Text>{JSON.stringify(content.json)}</Text> */}
-        {/* <RenderHtml
-          contentWidth={width}
-          source={{
-            html: documentToHtmlString(content.json),
-          }}
-        /> */}
-        {/* <Markdown> */}
-
         <RenderHtml
           contentWidth={width}
           source={{
-            html: documentToHtmlString(content.json , options),
+            html: documentToHtmlString(content.json, options),
           }}
-        /> 
-        {/* {documentToHtmlString(content.json, options)} */}
-        {/* </Markdown> */}
+        />
       </View>
     </ScrollView>
   );
@@ -90,7 +78,7 @@ const BlogItem = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
   image: {
     width: "100%",
