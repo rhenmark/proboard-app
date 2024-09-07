@@ -2,7 +2,7 @@
   "expo": {
     "name": "proboard",
     "slug": "proboard",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -26,6 +26,15 @@
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "b3238251-affd-4b0c-8c01-d76758e282b0"
+      }
+    },
+    "owner": "rhenmarkc"
   }
 }
