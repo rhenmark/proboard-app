@@ -33,10 +33,10 @@ const Project = () => {
     },
   });
 
-  if (loading) {
+  if (loading || error) {
     return (
       <View>
-        <Text>Loading</Text>
+        <Text>{error ? "Something went wrong" : "Loading" }</Text>
       </View>
     );
   }
